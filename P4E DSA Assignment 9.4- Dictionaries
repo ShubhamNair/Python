@@ -1,0 +1,22 @@
+name = input("Enter file:")
+if len(name) < 1:
+    name = "mbox-short.txt"
+handle = open(name)
+email=dict()
+for l in handle:
+    if 'From ' not in l:
+        continue
+    
+    word=l.split()
+    for w in word:
+        if w==word[1]:
+            email[w]=email.get(w,0)+1
+max=None
+mail=None
+for k,v in email.items():
+    if max is None or max<v:
+        max=v
+        mail=k
+        
+print(mail,max)
+        
